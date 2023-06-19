@@ -1,0 +1,15 @@
+.make_by_html {
+  border: 3px solid blueviolet;
+  margin: 4px;
+}
+
+.make_by_js {
+  border: 3px solid rosybrown;
+  margin: 4px;
+}
+
+section div {
+  border: 1px solid gray;
+  padding: 8px;
+  margin: 8px;
+}
