@@ -1,0 +1,48 @@
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 8px;
+  margin-bottom: 8px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+li div {
+  font-weight: 700;
+  font-size: 16px;
+}
+
+li button {
+  color: white;
+  background-color: red;
+  border: none;
+  padding: 4px 8px;
+}
+form {
+  display: flex;
+  align-items: center;
+}
+
+.todo {
+  height: 29px;
+  margin-right: 8px;
+  box-sizing: border-box;
+}
+
+.submitBtn {
+  color: white;
+  background-color: #107d2f;
+  font-size: 16px;
+  border: none;
+  box-sizing: border-box;
+  padding: 4px 12px;
+  height: 100%;
+  cursor: pointer;
+}
