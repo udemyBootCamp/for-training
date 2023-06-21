@@ -1,351 +1,262 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>실습4</title>
-    <script src="https://kit.fontawesome.com/c94aebb309.js" crossorigin="anonymous"></script>
     <style>
-        .header{
+        .header {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-        .whole_grid{
-            gap:1rem;
-            place-items: center;
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
+
+        .flex-container {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            
         }
-        .grid_box{
+
+        .flex-item {
+            width: calc(33.33% - 20px);
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: black;
+            font-size: 18px;
+            text-align: center;
+            padding: 10px;
+            
+        }
+
+        .flex-item img {
+            width: 320px;
+            margin-bottom: 10px;
             border-radius: 0.25rem;
-            overflow: hidden;
-            flex-direction: column;
-            width: 20rem;
-            height: 24rem;
+        }
+
+        .flex-wrapper {
+            width: 320px;
+            height: 230px;
+            padding: 16px;
+        }
+
+        .flex-item button {
+            padding: 8px 16px;
+            background-color: #ffffff;
+            color: #ff5a5a;
+            border: none;
+            cursor: pointer;
+            flex-direction: end;
+        }
+
+        #availablability {
+            color: #16a34a;
+            background-color: #dcfce7;
+            padding: 0px 3px;
+            border-radius: 15px;
+            margin-left: 1;
+            width: 57px;
+            height: 19px;
+            font-size: 12px;
+            text-align: center;
+            font-weight: bolder;
+            
+        }
+
+        #season {
             display: flex;
-            --tw-text-opacity: 1;
-            color: rgb(31 41 55);
-            background-color: rgb(255 255 255);
+            flex-direction: row;
         }
-        .picture_box{
-            position:inherit;
-            height: 40%;
-            background-color: rgb(239 246 255);
-            display: block;
-        }
-        img{
-            object-fit: cover;
-            width: 100%;
-            height: 100%;
-            position:inherit;
-            max-width: 100%;
-            display: block;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            left: 0;
 
+        #season i {
+            align-self: flex-end;
+            margin-bottom: 15px;
         }
-        .image_hover:hover{
-            transform: scale(1.2);
-        }
-        .category{
-            color: rgb(147 51 234);
-            letter-spacing: -.05em;
-            font-weight: 700;
-            font-size: .75rem;
-            line-height: 1rem;
-            padding-top: 0.125rem;
-            padding-bottom: 0.125rem;
-            padding-left: 0.5rem;
-            padding-right: 0.5rem;
-            border-radius: 9999px;
-            right: 1rem;
-            top: 1rem;
-            position: absolute;
-            background-color: rgb(243 232 255);
-        }
-        article{
-            padding: 1rem;
-            flex-direction: column;
-            height: 60%;
-            display: flex;
-            line-height: inherit;
-        }
-        .available{
-            margin-bottom: 0.5rem;
-        }
-        .available_check{
-            letter-spacing: -.05em;
-            font-weight: 700;
-            font-size: .75rem;
-            line-height: 1rem;
-            padding-top: 0.125rem;
-            padding-bottom: 0.125rem;
-            padding-left: 0.5rem;
-            padding-right: 0.5rem;
-            border-radius: 9999px;
-            background-color: rgb(220 252 231);
-            color: rgb(22 163 74);
 
+        #season p {
+            font-size: 12px;
         }
-        .project_name{
+
+        #subject {
+            font-size: 16px;
+            white-space: normal;
+            text-align: left;
+            word-wrap: break-word;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+        }
+
+        #info {
+            font-size: 12px;
+            margin: 4px;
+            width: 288px;
+            height: 48px;
+            font-weight: bold;
             overflow: hidden;
-            font-weight: 700;
-            margin: 0;
-            font-size: inherit;
-            display:-webkit-box;
+            text-overflow: ellipsis;
+            white-space: normal;
+            line-height: 1.2;
+            height: 3.6em;
+            text-align: left;
+            word-wrap: break-word;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            color: #9ca3af;
         }
-        p{
-            font-size: .75rem;
-            line-height: 1rem;
-            white-space: pre-wrap;
-            margin-top: 0.25rem;
-            margin: 0;
-            color: rgb(156 163 175/var(--tw-text-opacity));
 
+        #bottom-wrapper {
+            display: flex;
+            justify-content: space-between;
+            padding: 0px 5px;
+        }
+
+        #course {
+            font-size: 12px;
+            color: #6b7280;
+            background-color: #f3f4f6;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            height: 20px;
+            padding: 0px 3px;
+            font-weight: bolder;
+        }
+
+        #detail {
+            color: white;
+            background: #3b82f6;
+            font-size: 14px;
+            width: 98%;
+            height: 36px;
+            text-align: center;
+            border-radius: 10px;
         }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+        integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
+
 <body>
     <div class="header">
         <h4>교육 과정</h4>
         <h5>과정 전체보기</h5>
     </div>
-    <div class='whole_grid'>
-        <div style="opacity: 1;">
-            <div class="grid_box">
-                <div class="picture_box">
-                    <div class = 'image_hover'>
-                        <img src="https://sniperfactory.com/api/files/courses/2g41rrrm5lttkl0/flutter3rd_qdbQ03hu4U.png">
-                    </div> 
-                    <div class="category">
-                        스펙
+    <div class="flex-container">
+        <div class="flex-item">
+            <img src="https://sniperfactory.com/api/files/courses/2g41rrrm5lttkl0/flutter3rd_qdbQ03hu4U.png"
+                alt="Image 1" />
+            <div class="flex-wrapper">
+                <div id="availablability">신청 가능</div>
+                <h3 id="subject">flutter 모바일 어플리케이션 개발 부트캠프</h3>
+                <p id="info">
+                    4개월 간 스나이퍼팩토리와 함께 Flutter로 "내가 원하는 어플리케이션"을 만들어보는 시간입니다.
+                <div id="bottom-wrapper">
+                    <p id="course">취업연계과정</p>
+                    <div id="season">
+                        <p>기수: 3기</p>
+                        <i class="fa-solid fa-rocket"></i>
                     </div>
-                    <article>
-                        <div class="available">
-                            <span class="available_chech">
-                                신청가능
-                            </span>
-                        </div>
-                        <h5 class="project_name">Flutter 모바일 애플리케이션 개발 부트캠프과정</h5>
-                        <p>4개월 간 스나이퍼팩토리와 함께 Flutter로 "내가 원하는 어플리케이션"을 만들어보는 시간입니다.
-                        </p>
-                        <div>
-                            <div>
-                                취업연계과정
-                            </div>
-                            <span>
-                                기수 : 3기
-                                <i class="fa-solid fa-rocket"></i>
-                            </span>
-                        </div>
-                        <span>
-                            <svg>
-                                <path>
-
-                                </path>
-                            </svg>
-                            '더 알아보기'
-                        </span>
-                    </article>
                 </div>
+                <button id="detail">더 알아보기</button>
             </div>
         </div>
-        <div style="opacity: 1;">
-            <div class="grid_box">
-                <div class="picture_box">
-                    <div class = 'image_hover'>
-                        <img src="https://sniperfactory.com/api/files/courses/tluii9t231567qc/fdf_sdNeiK2qub.jpg">
-                    </div> 
-                    <div class="category">
-                        스펙
+        <div class="flex-item">
+            <img src="https://sniperfactory.com/api/files/courses/2g41rrrm5lttkl0/flutter3rd_qdbQ03hu4U.png"
+                alt="Image 1" />
+            <div class="flex-wrapper">
+                <div id="availablability">신청 가능</div>
+                <h3 id="subject">flutter 모바일 어플리케이션 개발 부트캠프</h3>
+                <p id="info">
+                    4개월 간 스나이퍼팩토리와 함께 Flutter로 "내가 원하는 어플리케이션"을 만들어보는 시간입니다.
+                <div id="bottom-wrapper">
+                    <p id="course">취업연계과정</p>
+                    <div id="season">
+                        <p>기수: 3기</p>
+                        <i class="fa-solid fa-rocket"></i>
                     </div>
-                    <article>
-                        <div class="available">
-                            <span class="available_chech">
-                                신청가능
-                            </span>
-                        </div>
-                        <h5 class="project_name">[유데미x웅진씽크빅x스나이퍼팩토리]10주 완성! 프로젝트 캠프 : 프론트엔드(리액트) 과정</h5>
-                        <p>[유데미x웅진씽크빅x스나이퍼팩토리] 10주 완성! 프로젝트 캠프 : 프론트엔드(리액트) 과정
-                        </p>
-                        <div>
-                            <div>
-                                취업연계과정
-                            </div>
-                            <span>
-                                기수 : 3기
-                                <i class="fa-solid fa-rocket"></i>
-                            </span>
-                        </div>
-                        <span>
-                            <svg>
-                                <path>
-
-                                </path>
-                            </svg>
-                            '더 알아보기'
-                        </span>
-                    </article>
                 </div>
+                <button id="detail">더 알아보기</button>
             </div>
         </div>
-        <div style="opacity: 1;">
-            <div class="grid_box">
-                <div class="picture_box">
-                    <div class = 'image_hover'>
-                        <img src="https://sniperfactory.com/api/files/courses/0dqszil3ek971y1/_Hbe76al6xE_JSNHDWvOkq.jpg">
-                    </div> 
-                    <div class="category">
-                        스펙
+        <div class="flex-item">
+            <img src="https://sniperfactory.com/api/files/courses/2g41rrrm5lttkl0/flutter3rd_qdbQ03hu4U.png"
+                alt="Image 1" />
+            <div class="flex-wrapper">
+                <div id="availablability">신청 가능</div>
+                <h3 id="subject">flutter 모바일 어플리케이션 개발 부트캠프</h3>
+                <p id="info">
+                    4개월 간 스나이퍼팩토리와 함께 Flutter로 "내가 원하는 어플리케이션"을 만들어보는 시간입니다.
+                <div id="bottom-wrapper">
+                    <p id="course">취업연계과정</p>
+                    <div id="season">
+                        <p>기수: 3기</p>
+                        <i class="fa-solid fa-rocket"></i>
                     </div>
-                    <article>
-                        <div class="available">
-                            <span class="available_chech">
-                                신청가능
-                            </span>
-                        </div>
-                        <h5 class="project_name">사업 기획서 작성 방법</h5>
-                        <p>[KITRI(한국정보기술연구원) x SFAC] 사업계획서 작성방법 무료 특강</p>
-                        <div>
-                            <div>
-                                취업연계과정
-                            </div>
-                            <span>
-                                기수 : 3기
-                                <i class="fa-solid fa-rocket"></i>
-                            </span>
-                        </div>
-                        <span>
-                            <svg>
-                                <path>
-
-                                </path>
-                            </svg>
-                            '더 알아보기'
-                        </span>
-                    </article>
                 </div>
+                <button id="detail">더 알아보기</button>
             </div>
         </div>
-        <div style="opacity: 1;">
-            <div class="grid_box">
-                <div class="picture_box">
-                    <div class = 'image_hover'>
-                        <img src="https://sniperfactory.com/api/files/courses/4bpeglyhrpa2ptj/0101_Zk1cFPX7Zq.jpg">
-                    </div> 
-                    <div class="category">
-                        스펙
+        <div class="flex-item">
+            <img src="https://sniperfactory.com/api/files/courses/2g41rrrm5lttkl0/flutter3rd_qdbQ03hu4U.png"
+                alt="Image 1" />
+            <div class="flex-wrapper">
+                <div id="availablability">신청 가능</div>
+                <h3 id="subject">flutter 모바일 어플리케이션 개발 부트캠프</h3>
+                <p id="info">
+                    4개월 간 스나이퍼팩토리와 함께 Flutter로 "내가 원하는 어플리케이션"을 만들어보는 시간입니다.
+                </p>
+                <div id="bottom-wrapper">
+                    <p id="course">취업연계과정</p>
+                    <div id="season">
+                        <p>기수: 3기</p>
+                        <i class="fa-solid fa-rocket"></i>
                     </div>
-                    <article>
-                        <div class="available">
-                            <span class="available_chech">
-                                신청가능
-                            </span>
-                        </div>
-                        <h5 class="project_name">리액트를 활용한 웹 시스템 개발 과정</h5>
-                        <p>[KITRI(한국정보기술연구원) x SFAC] 리액트를 활용한 웹 시스템 개발 과정 무료 교육</p>
-                        <div>
-                            <div>
-                                취업연계과정
-                            </div>
-                            <span>
-                                기수 : 3기
-                                <i class="fa-solid fa-rocket"></i>
-                            </span>
-                        </div>
-                        <span>
-                            <svg>
-                                <path>
-
-                                </path>
-                            </svg>
-                            '더 알아보기'
-                        </span>
-                    </article>
                 </div>
+                <button id="detail">더 알아보기</button>
             </div>
         </div>
-        <div style="opacity: 1;">
-            <div class="grid_box">
-                <div class="picture_box">
-                    <div class = 'image_hover'>
-                        <img src="https://sniperfactory.com/api/files/courses/ay7bev6snialrow/_JU4TZgKwgg_mBzaW7y5jn.jpg">
-                    </div> 
-                    <div class="category">
-                        스펙
+        <div class="flex-item">
+            <img src="https://sniperfactory.com/api/files/courses/2g41rrrm5lttkl0/flutter3rd_qdbQ03hu4U.png"
+                alt="Image 1" />
+            <div class="flex-wrapper">
+                <div id="availablability">신청 가능</div>
+                <h3 id="subject">flutter 모바일 어플리케이션 개발 부트캠프</h3>
+                <p id="info">
+                    4개월 간 스나이퍼팩토리와 함께 Flutter로 "내가 원하는 어플리케이션"을 만들어보는 시간입니다.
+                <div id="bottom-wrapper">
+                    <p id="course">취업연계과정</p>
+                    <div id="season">
+                        <p>기수: 3기</p>
+                        <i class="fa-solid fa-rocket"></i>
                     </div>
-                    <article>
-                        <div class="available">
-                            <span class="available_chech">
-                                신청가능
-                            </span>
-                        </div>
-                        <h5 class="project_name">데이터와 알고리즘에 대한 이해를 기반으로 한 인공지능 활용 과정</h5>
-                        <p>[KITRI(한국정보기술연구원) x SFAC] 인공지능 전문가와 함께하는 인공지능 과정 교육!</p>
-                        <div>
-                            <div>
-                                취업연계과정
-                            </div>
-                            <span>
-                                기수 : 3기
-                                <i class="fa-solid fa-rocket"></i>
-                            </span>
-                        </div>
-                        <span>
-                            <svg>
-                                <path>
-
-                                </path>
-                            </svg>
-                            '더 알아보기'
-                        </span>
-                    </article>
                 </div>
+                <button id="detail">더 알아보기</button>
             </div>
         </div>
-        <div style="opacity: 1;">
-            <div class="grid_box">
-                <div class="picture_box">
-                    <div class = 'image_hover'>
-                        <img src="https://sniperfactory.com/api/files/courses/ay7bev6snialrow/_JU4TZgKwgg_mBzaW7y5jn.jpg">
-                    </div> 
-                    <div class="category">
-                        스펙
+        <div class="flex-item">
+            <img src="https://sniperfactory.com/api/files/courses/2g41rrrm5lttkl0/flutter3rd_qdbQ03hu4U.png"
+                alt="Image 1" />
+            <div class="flex-wrapper">
+                <div id="availablability">신청 가능</div>
+                <h3 id="subject">flutter 모바일 어플리케이션 개발 부트캠프</h3>
+                <p id="info">
+                    4개월 간 스나이퍼팩토리와 함께 Flutter로 "내가 원하는 어플리케이션"을 만들어보는 시간입니다.
+                <div id="bottom-wrapper">
+                    <p id="course">취업연계과정</p>
+                    <div id="season">
+                        <p>기수: 3기</p>
+                        <i class="fa-solid fa-rocket"></i>
                     </div>
-                    <article>
-                        <div class="available">
-                            <span class="available_chech">
-                                신청가능
-                            </span>
-                        </div>
-                        <h5 class="project_name">하루만에 살펴보는 데이터분석 맛보기 과정</h5>
-                        <p>[[KITRI(한국정보기술연구원) x SFAC] 금융 대기업 실무진과 함께하는 데이터 분석 하루교육!</p>
-
-                        <div>
-                            <div>
-                                취업연계과정
-                            </div>
-                            <span>
-                                기수 : 3기
-                                <i class="fa-solid fa-rocket"></i>
-                            </span>
-                        </div>
-                        <span>
-                            <svg>
-                                <path>
-
-                                </path>
-                            </svg>
-                            '더 알아보기'
-                        </span>
-                    </article>
                 </div>
+                <button id="detail">더 알아보기</button>
             </div>
         </div>
     </div>
 </body>
+
 </html>
