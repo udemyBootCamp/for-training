@@ -32,8 +32,10 @@ setInterval(() => {
 
   if (min < 10) {
     min = "0" + min;
-  } else if (hours < 10) {
-    hours += "0";
+  }
+
+  if (hours < 10) {
+    hours = "0" + hours;
   }
   clock.innerText = `${hours}:${min}`;
 
