@@ -41,8 +41,6 @@ setInterval(() => {
 
   const hour = new Date().getHours();
 
-  console.log(hour < 15);
-
   if (hour < 11) {
     greeting.innerText = greetingMsg[0];
   } else if (hour < 15) {

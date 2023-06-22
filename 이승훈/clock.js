@@ -10,10 +10,14 @@
 
     if (min < 10) {
       min = "0" + min;
-    } else if (sec < 10) {
-      sec += "0";
-    } else if (hours < 10) {
-      hours += "0";
+    }
+
+    if (sec < 10) {
+      sec = "0" + sec;
+    }
+
+    if (hours < 10) {
+      hours = "0" + hours;
     }
     clock.innerText = `${hours}: ${min}: ${sec}`;
   }, 1000);

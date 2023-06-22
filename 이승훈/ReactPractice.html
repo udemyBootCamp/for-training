@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ReactPractice</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      const root = document.querySelector("#root");
+
+      const TravelContainer = () => {
+        return (
+          <>
+            <h3> 여기어때 여행 </h3>
+            <form
+              method="get"
+              action="https://www.goodchoice.kr/product/result"
+            >
+              <input type="text" className="keyword" name="keyword" />
+              <input type="submit" value="찾기" />
+            </form>
+          </>
+        );
+      };
+
+      const LoginContainer = () => {
+        const [id, setId] = React.useState("");
+        const [password, setPassword] = React.useState("");
+        const submitHandler = (e) => {
+          e.preventDefault();
+          console.log(`ID: ${id}, PASSWORD: ${password}`);
+        };
+        return (
+          <form onSubmit={submitHandler}>
+            <input
+              type="text"
+              placeholder="ID를 입력해주세요"
+              onChange={(e) => setId(e.target.value)}
+            />
+            <input
+              type="password"
+              placeholder="비밀번호를 입력해주세요"
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <input type="submit" />
+          </form>
+        );
+      };
+
+      const RandomImg = () => {
+        const [randomNum, setRandomNum] = React.useState(0);
+        const clickHandler = () => {
+          setRandomNum(Math.floor(Math.random() * 10));
+        };
+
+        return (
+          <>
+            <h3>랜덤 강아지</h3>
+            <img
+              src={`./assest/image_${randomNum}.jpg`}
+              alt="강아지"
+              width="300px"
+              height="300px"
+              onClick={clickHandler}
+            />
+          </>
+        );
+      };
+
+      const Slider = () => {
+        const [ImgNum, setImgNum] = React.useState(0);
+        const handleClick = (e) => {
+          if (e.target.id === "next") {
+            setImgNum(ImgNum + 1);
+
+            if (ImgNum >= 9) setImgNum(0);
+          } else {
+            setImgNum(ImgNum - 1);
+
+            if (ImgNum <= 0) setImgNum(9);
+          }
+        };
+        return (
+          <>
+            <h3>이미지 슬라이더</h3>
+            <img
+              src={`./assest/image_${ImgNum}.jpg`}
+              alt="강아지"
+              width="300px"
+              height="300px"
+            />
+            <br />
+            <button id="prev" onClick={handleClick}>
+              이전
+            </button>
+            <button id="next" onClick={handleClick}>
+              다음
+            </button>
+          </>
+        );
+      };
+
+      const Clock = () => {
+        const [date, setDate] = React.useState("");
+
+        React.useEffect(() => {
+          const timer = setInterval(() => {
+            const newDate = new Date();
+
+            let hours = newDate.getHours();
+            let min = newDate.getMinutes();
+            let sec = newDate.getSeconds();
+
+            if (min < 10) {
+              min = "0" + min;
+            }
+
+            if (sec < 10) {
+              sec = "0" + sec;
+            }
+
+            if (hours < 10) {
+              hours = "0" + hours;
+            }
+            setDate(`${hours}: ${min}: ${sec}`);
+          }, 1000);
+
+          return () => clearInterval(timer);
+        }, []);
+
+        return <h2>{date}</h2>;
+      };
+
+      const Calculator = () => {
+        return (
+          <>
+            <div></div>
+          </>
+        );
+      };
+      const Container = () => {
+        return (
+          <>
+            <TravelContainer />
+            <LoginContainer />
+            <RandomImg />
+            <Slider />
+            <Clock />
+          </>
+        );
+      };
+
+      ReactDOM.render(<Container />, root);
+    </script>
+  </body>
+</html>
