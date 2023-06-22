@@ -26,3 +26,37 @@ const startClock = () => {
 };
 
 myclock.addEventListener("click", startClock);
+
+/* <간단 실습>
+window.alert(5 + 6);
+*/
+const divElem = document.createElement("div");
+divElem.innerText = "새로운 div 요소";
+document.body.appendChild(divElem);
+
+divElem.addEventListener("click", function () {
+  console.log(this);
+  this.innerHTML = "clicked";
+});
+
+const onChange = (event) => {
+  //event객체를 매개변수로 받는 onChange함수를 화살표 함수로 정의
+  const {
+    //event.target은 event가 발생한 요소를 나타내는 객체 -> ex) <div></div>
+    target: { value },
+  } = event; //객체 비구조화 할당을 사용해서, event.target.value를 value변수로 정의
+  console.log(value); //console.log(event.target.value)
+};
+
+const doggy = {
+  name: "멍멍이",
+  sound: "멍멍",
+  age: 2,
+};
+
+console.log(Object.entries(doggy));
+console.log(Object.keys(doggy));
+console.log(Object.values(doggy));
+
+let w = window.innerHeight;
+console.log(w);
