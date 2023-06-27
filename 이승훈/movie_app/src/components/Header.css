@@ -1,0 +1,11 @@
+.header-nav-bar {
+  cursor: pointer;
+  font-size: 24px;
+  margin-bottom: 24px;
+}
+
+.title {
+  font-size: 36px;
+  margin: 0 auto;
+  width: 1200px;
+}

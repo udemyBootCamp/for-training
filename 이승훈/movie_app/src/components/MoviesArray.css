@@ -1,0 +1,13 @@
+li {
+  display: flex;
+  flex-direction: column;
+}
+
+ul {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  width: 1200px;
+  justify-content: space-between;
+  align-items: center;
+}
