@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Movie from "../pages/Movie";
 import "./MoviesArray.css";
 
@@ -12,12 +13,19 @@ type movieType = {
   synopsis: string;
   title: string;
 };
-const MoviesArray = () => {
+
+interface MovieArrayPropsType {
+  genre: string;
+  setMovieId: React.Dispatch<React.SetStateAction<string>>;
+}
+
+const MoviesArray = ({ genre, setMovieId }: MovieArrayPropsType) => {
   const [movies, setMovies] = useState<movieType[]>([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function fetchData() {
-      await fetch("https://yts.mx/api/v2/list_movies.json")
+      await fetch(`https://yts.mx/api/v2/list_movies.json?genre=${genre}`)
         .then((res) => res.json())
         .then((data) => {
           setMovies(data.data.movies);
@@ -25,15 +33,17 @@ const MoviesArray = () => {
     }
 
     fetchData();
-  }, []);
+  }, [genre]);
 
-  const clickHandler = () => {};
-
+  const movieClickHandler = (e: React.MouseEvent<HTMLLIElement>) => {
+    setMovieId(e.currentTarget.id);
+    navigate("/detail");
+  };
   return (
     <ul>
       {movies.map((movie) => {
         return (
-          <li key={movie.id}>
+          <li key={movie.id} id={movie.id + ""} onClick={movieClickHandler}>
             <Movie
               genres={movie.genres}
               title={movie.title}

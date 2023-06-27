@@ -1,38 +1,24 @@
 import "./App.css";
+import { useState } from "react";
+import Header from "./components/Header";
 import MoviesArray from "./components/MoviesArray";
-import TopRatedMovies from "./pages/TopRatedMovies";
+import MovieDetail from "./pages/MovieDetail";
+import { Routes, Route } from "react-router-dom";
 
 function App() {
-  const genre: string[] = [
-    "Action",
-    "adventure",
-    "animation",
-    "comedy",
-    "crime",
-    "Drama",
-    "Family",
-    "Fantasy",
-    "Horror",
-    "Music",
-    "Romance",
-    "Sport",
-    "Thriller",
-    "War",
-  ];
+  const [genre, setGenre] = useState("");
+  const [movieId, setMovieId] = useState("");
   return (
     <div className="App">
-      <header>Movies</header>
-      <nav>
-        <ul>
-          {genre.map((item) => {
-            return <li>{item}</li>;
-          })}
-        </ul>
-      </nav>
+      <Header setGenre={setGenre} />
 
-      <section className="Top Rate"></section>
-      <section className="sorted Movie"></section>
-      <MoviesArray />
+      <Routes>
+        <Route
+          path="/"
+          element={<MoviesArray genre={genre} setMovieId={setMovieId} />}
+        />
+        <Route path="/detail" element={<MovieDetail id={movieId} />} />
+      </Routes>
 
       <footer></footer>
     </div>
