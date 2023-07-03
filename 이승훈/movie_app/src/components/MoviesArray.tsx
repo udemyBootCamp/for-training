@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Movie from "../pages/Movie";
 import "./MoviesArray.css";
+import useFetchMovies from "../hooks/useFetchMovies";
 
 type movieType = {
   genres: string[];
@@ -23,17 +24,13 @@ const MoviesArray = ({ genre, setMovieId }: MovieArrayPropsType) => {
   const [movies, setMovies] = useState<movieType[]>([]);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    async function fetchData() {
-      await fetch(`https://yts.mx/api/v2/list_movies.json?genre=${genre}`)
-        .then((res) => res.json())
-        .then((data) => {
-          setMovies(data.data.movies);
-        });
-    }
+  const [state, refetch] = useFetchMovies([], genre);
 
-    fetchData();
-  }, [genre]);
+  useEffect(() => {
+    if (state.data) {
+      setMovies(state.data);
+    }
+  }, [state.data]);
 
   const movieClickHandler = (e: React.MouseEvent<HTMLLIElement>) => {
     setMovieId(e.currentTarget.id);

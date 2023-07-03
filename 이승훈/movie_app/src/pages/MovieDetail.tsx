@@ -21,7 +21,9 @@ interface MovieDetailPropsType {
 const MovieDetail = ({ id }: MovieDetailPropsType) => {
   const [info, setInfo] = useState<infoType>({} as infoType);
   const [load, setLoad] = useState(true);
+
   const navigate = useNavigate();
+
   useEffect(() => {
     async function fetchData() {
       await fetch(`https://yts.mx/api/v2/movie_details.json?movie_id=${id}`)
@@ -42,6 +44,7 @@ const MovieDetail = ({ id }: MovieDetailPropsType) => {
   const handleCloseClick = () => {
     navigate("/");
   };
+
   return (
     <>
       {load ? (
@@ -68,7 +71,9 @@ const MovieDetail = ({ id }: MovieDetailPropsType) => {
               <p>개봉연도: {info.year}</p>
             </div>
           </section>{" "}
-          <button onClick={handleCloseClick}>X</button>
+          <button className="colseBtn" onClick={handleCloseClick}>
+            X
+          </button>
         </>
       )}
     </>

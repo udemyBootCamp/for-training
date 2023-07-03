@@ -4,6 +4,7 @@ import Header from "./components/Header";
 import MoviesArray from "./components/MoviesArray";
 import MovieDetail from "./pages/MovieDetail";
 import { Routes, Route } from "react-router-dom";
+import Chat from "./components/Chat";
 
 function App() {
   const [genre, setGenre] = useState("");
@@ -19,6 +20,8 @@ function App() {
         />
         <Route path="/detail" element={<MovieDetail id={movieId} />} />
       </Routes>
+
+      <Chat />
 
       <footer></footer>
     </div>
