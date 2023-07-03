@@ -1,19 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Movie from "../pages/Movie";
 import "./MoviesArray.css";
 import useFetchMovies from "../hooks/useFetchMovies";
-
-type movieType = {
-  genres: string[];
-  background_image: string;
-  description_full: string;
-  id: number;
-  large_cover_image: string;
-  rating: number;
-  synopsis: string;
-  title: string;
-};
+import { movieType } from "../types/Movie";
+import { MoviesContext } from "../store/moviesContext";
 
 interface MovieArrayPropsType {
   genre: string;
@@ -21,14 +12,14 @@ interface MovieArrayPropsType {
 }
 
 const MoviesArray = ({ genre, setMovieId }: MovieArrayPropsType) => {
-  const [movies, setMovies] = useState<movieType[]>([]);
+  const { movies, getMovieList } = useContext(MoviesContext);
   const navigate = useNavigate();
 
   const [state, refetch] = useFetchMovies([], genre);
 
   useEffect(() => {
     if (state.data) {
-      setMovies(state.data);
+      getMovieList(state.data);
     }
   }, [state.data]);
 
@@ -37,10 +28,15 @@ const MoviesArray = ({ genre, setMovieId }: MovieArrayPropsType) => {
     navigate("/detail");
   };
   return (
-    <ul>
+    <ul className="movieArrayList">
       {movies.map((movie) => {
         return (
-          <li key={movie.id} id={movie.id + ""} onClick={movieClickHandler}>
+          <li
+            key={movie.id}
+            id={movie.id + ""}
+            onClick={movieClickHandler}
+            className="movieArrayItem"
+          >
             <Movie
               genres={movie.genres}
               title={movie.title}

@@ -1,12 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./Header.css";
 import { useNavigate } from "react-router-dom";
+import Search from "./Search";
+import useFetchMovies from "../hooks/useFetchMovies";
+import { MoviesContext } from "../store/moviesContext";
 type headerpropsType = {
   setGenre: React.Dispatch<React.SetStateAction<string>>;
 };
 
 const Header = ({ setGenre }: headerpropsType) => {
   const navigate = useNavigate();
+  const { getMovieList } = useContext(MoviesContext);
+  const [state, refetch] = useFetchMovies([], "");
+
   const genre: string[] = [
     "Action",
     "Adventure",
@@ -30,6 +36,10 @@ const Header = ({ setGenre }: headerpropsType) => {
 
   const titleClickHandler = (e: React.MouseEvent<HTMLHRElement>) => {
     navigate("/");
+    setGenre("");
+    if (state.data) {
+      getMovieList(state.data);
+    }
   };
   return (
     <header>
@@ -37,7 +47,7 @@ const Header = ({ setGenre }: headerpropsType) => {
         Movies
       </h2>
       <nav>
-        <ul>
+        <ul className="movieNavList">
           {genre.map((item, index) => {
             return (
               <li
@@ -52,6 +62,7 @@ const Header = ({ setGenre }: headerpropsType) => {
           })}
         </ul>
       </nav>
+      <Search />
     </header>
   );
 };

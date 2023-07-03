@@ -1,25 +1,15 @@
 import { useEffect, useReducer } from "react";
-
-type dataType = {
-  genres: string[];
-  background_image: string;
-  description_full: string;
-  id: number;
-  large_cover_image: string;
-  rating: number;
-  synopsis: string;
-  title: string;
-};
+import { movieType } from "../types/Movie";
 
 interface stateType {
   loading: boolean;
-  data: dataType[] | null | undefined;
+  data: movieType[] | null | undefined;
   error: null | false;
 }
 
 interface actionType {
   type: string;
-  data?: dataType[];
+  data?: movieType[];
   error?: any;
 }
 

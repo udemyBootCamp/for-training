@@ -1,11 +1,14 @@
-li {
+.movieArrayItem {
   display: flex;
   flex-direction: column;
+  padding: 0;
+  width: 280px;
 }
 
-ul {
-  display: flex;
-  flex-wrap: wrap;
+.movieArrayList {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 3px;
   margin: 0 auto;
   width: 1200px;
   justify-content: space-between;
