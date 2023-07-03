@@ -1,18 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Movie from "../pages/Movie";
 import "./MoviesArray.css";
-
-type movieType = {
-  genres: string[];
-  background_image: string;
-  description_full: string;
-  id: number;
-  large_cover_image: string;
-  rating: number;
-  synopsis: string;
-  title: string;
-};
+import useFetchMovies from "../hooks/useFetchMovies";
+import { movieType } from "../types/Movie";
+import { MoviesContext } from "../store/moviesContext";
 
 interface MovieArrayPropsType {
   genre: string;
@@ -20,30 +12,31 @@ interface MovieArrayPropsType {
 }
 
 const MoviesArray = ({ genre, setMovieId }: MovieArrayPropsType) => {
-  const [movies, setMovies] = useState<movieType[]>([]);
+  const { movies, getMovieList } = useContext(MoviesContext);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    async function fetchData() {
-      await fetch(`https://yts.mx/api/v2/list_movies.json?genre=${genre}`)
-        .then((res) => res.json())
-        .then((data) => {
-          setMovies(data.data.movies);
-        });
-    }
+  const [state, refetch] = useFetchMovies([], genre);
 
-    fetchData();
-  }, [genre]);
+  useEffect(() => {
+    if (state.data) {
+      getMovieList(state.data);
+    }
+  }, [state.data]);
 
   const movieClickHandler = (e: React.MouseEvent<HTMLLIElement>) => {
     setMovieId(e.currentTarget.id);
     navigate("/detail");
   };
   return (
-    <ul>
+    <ul className="movieArrayList">
       {movies.map((movie) => {
         return (
-          <li key={movie.id} id={movie.id + ""} onClick={movieClickHandler}>
+          <li
+            key={movie.id}
+            id={movie.id + ""}
+            onClick={movieClickHandler}
+            className="movieArrayItem"
+          >
             <Movie
               genres={movie.genres}
               title={movie.title}

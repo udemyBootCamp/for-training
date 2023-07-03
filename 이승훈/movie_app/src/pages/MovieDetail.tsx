@@ -1,27 +1,21 @@
 import React, { useEffect, useState } from "react";
 import "./MovieDetail.css";
 import Loading from "./Loading";
+import FavoriteMark from "../components/FavoriteMark";
 import { useNavigate } from "react-router-dom";
-
-type infoType = {
-  background_image: string;
-  large_cover_image: string;
-  description: string;
-  genres: string[];
-  rating: number;
-  runtime: number;
-  title: string;
-  year: number;
-};
+import { movieType } from "../types/Movie";
 
 interface MovieDetailPropsType {
   id: string;
 }
 
 const MovieDetail = ({ id }: MovieDetailPropsType) => {
-  const [info, setInfo] = useState<infoType>({} as infoType);
+  const [info, setInfo] = useState<movieType>({} as movieType);
   const [load, setLoad] = useState(true);
+  console.log(info);
+
   const navigate = useNavigate();
+
   useEffect(() => {
     async function fetchData() {
       await fetch(`https://yts.mx/api/v2/movie_details.json?movie_id=${id}`)
@@ -42,6 +36,7 @@ const MovieDetail = ({ id }: MovieDetailPropsType) => {
   const handleCloseClick = () => {
     navigate("/");
   };
+
   return (
     <>
       {load ? (
@@ -61,14 +56,19 @@ const MovieDetail = ({ id }: MovieDetailPropsType) => {
             />
             <div>
               <h2>{info.title}</h2>
-              <p className="description">{info.description}</p>
+              <p className="description">
+                {info.description_intro.slice(0, 100) + "..."}
+              </p>
               <p className="genres">장르: {info.genres.join(", ")}</p>
               <p>별점: {info.rating}</p>
               <p>상영시간: {info.runtime}분</p>
               <p>개봉연도: {info.year}</p>
             </div>
           </section>{" "}
-          <button onClick={handleCloseClick}>X</button>
+          <button className="colseBtn" onClick={handleCloseClick}>
+            X
+          </button>
+          <FavoriteMark movie={info} />
         </>
       )}
     </>
