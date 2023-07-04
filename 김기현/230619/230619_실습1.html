@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>장바구니카트</title>
+    <style>
+        #info{
+            height: 200px;
+            border:1px solid gray;
+            width: 300px;
+            float: left;
+            margin-right:30px;
+            margin-bottom: 30px;
+
+        }
+        
+        button{
+            height: auto;
+            background-color: green;
+            color:white;
+            font-weight: bold;
+        }
+       h3{
+        clear:both;
+       }
+       
+    </style>
+</head>
+<body>
+    <div id="info">
+        <h4>apple</h4>
+        <br>
+        <p id="price">1000</p>
+        <br>
+        <button onclick="appendApple()">add cart</button>
+    </div>
+    <div id="info">
+        <h4>banana</h4>
+        <br>
+        <p id="price">1000</p>
+        <br>
+        <button onclick="appendBanana()">add cart</button>
+    </div>
+    <h3>Cart</h3>
+
+    <script>
+        function appendApple(){
+            let newP = document.createElement('p');
+            let newText = document.createTextNode("apple - 1000");
+            
+            newP.appendChild(newText);
+            document.body.appendChild(newP);
+        }
+        function appendBanana(){
+            let newP = document.createElement('p');
+            let newText = document.createTextNode("banana - 1500");
+            
+            newP.appendChild(newText);
+            document.body.appendChild(newP);
+        }
+    </script>
+</body>
+</html>
