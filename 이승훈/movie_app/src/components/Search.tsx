@@ -1,5 +1,6 @@
 import React from "react";
 import useSearchMovies from "../hooks/useSearchMovies";
+import "./Search.css";
 
 const Search = () => {
   const search = useSearchMovies();
@@ -9,9 +10,9 @@ const Search = () => {
     search(value);
   };
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="SearchArea">
       <input type="string" className="searchValue" name="input" />
-      <input type="submit" />
+      <input type="submit" value="영화찾기" />
     </form>
   );
 };

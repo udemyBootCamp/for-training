@@ -3,16 +3,14 @@ import { useNavigate } from "react-router-dom";
 import Movie from "../pages/Movie";
 import "./MoviesArray.css";
 import useFetchMovies from "../hooks/useFetchMovies";
-import { movieType } from "../types/Movie";
 import { MoviesContext } from "../store/moviesContext";
 
 interface MovieArrayPropsType {
-  genre: string;
   setMovieId: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const MoviesArray = ({ genre, setMovieId }: MovieArrayPropsType) => {
-  const { movies, getMovieList } = useContext(MoviesContext);
+const MoviesArray = ({ setMovieId }: MovieArrayPropsType) => {
+  const { movies, getMovieList, genre } = useContext(MoviesContext);
   const navigate = useNavigate();
 
   const [state, refetch] = useFetchMovies([], genre);
