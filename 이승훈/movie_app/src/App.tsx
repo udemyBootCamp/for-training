@@ -5,25 +5,24 @@ import MoviesArray from "./components/MoviesArray";
 import MovieDetail from "./pages/MovieDetail";
 import { Routes, Route } from "react-router-dom";
 import Chat from "./components/Chat";
+import Pagination from "./components/Pagination";
 
 function App() {
-  const [genre, setGenre] = useState("");
   const [movieId, setMovieId] = useState("");
   return (
     <div className="App">
-      <Header setGenre={setGenre} />
+      <Header />
 
       <Routes>
-        <Route
-          path="/"
-          element={<MoviesArray genre={genre} setMovieId={setMovieId} />}
-        />
+        <Route path="/" element={<MoviesArray setMovieId={setMovieId} />} />
         <Route path="/detail" element={<MovieDetail id={movieId} />} />
       </Routes>
 
       <Chat />
 
-      <footer></footer>
+      <footer>
+        <Pagination />
+      </footer>
     </div>
   );
 }

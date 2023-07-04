@@ -1,0 +1,9 @@
+.SearchArea {
+  position: absolute;
+  top: 10%;
+  right: 0;
+}
+
+.searchValue {
+  margin-right: 5px;
+}
