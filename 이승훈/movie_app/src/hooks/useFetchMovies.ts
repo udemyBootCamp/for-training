@@ -40,7 +40,8 @@ const reducer = (state: stateType, action: actionType): stateType => {
 
 function useFetchMovies(
   deps: any[] = [],
-  genre: string
+  genre: string,
+  page: number = 1
 ): [stateType, () => Promise<void>] {
   const [state, dispatch] = useReducer(reducer, {
     loading: false,
@@ -52,7 +53,7 @@ function useFetchMovies(
     dispatch({ type: "LOADING" });
     try {
       const data = await fetch(
-        `https://yts.mx/api/v2/list_movies.json?genre=${genre}`
+        `https://yts.mx/api/v2/list_movies.json?genre=${genre}&page=${page}`
       )
         .then((res) => res.json())
         .then((res) => res.data.movies);
@@ -64,7 +65,7 @@ function useFetchMovies(
 
   useEffect(() => {
     fetchData();
-  }, [genre]);
+  }, [genre, page]);
 
   return [state, fetchData];
 }

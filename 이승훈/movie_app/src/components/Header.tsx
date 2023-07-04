@@ -4,13 +4,10 @@ import { useNavigate } from "react-router-dom";
 import Search from "./Search";
 import useFetchMovies from "../hooks/useFetchMovies";
 import { MoviesContext } from "../store/moviesContext";
-type headerpropsType = {
-  setGenre: React.Dispatch<React.SetStateAction<string>>;
-};
 
-const Header = ({ setGenre }: headerpropsType) => {
+const Header = () => {
   const navigate = useNavigate();
-  const { getMovieList } = useContext(MoviesContext);
+  const { getMovieList, setGenre, handlePageNum } = useContext(MoviesContext);
   const [state, refetch] = useFetchMovies([], "");
 
   const genre: string[] = [
@@ -40,6 +37,7 @@ const Header = ({ setGenre }: headerpropsType) => {
     if (state.data) {
       getMovieList(state.data);
     }
+    handlePageNum(1);
   };
   return (
     <header>
