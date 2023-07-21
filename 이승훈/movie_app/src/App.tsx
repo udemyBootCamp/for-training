@@ -9,6 +9,7 @@ import Pagination from "./components/Pagination";
 
 function App() {
   const [movieId, setMovieId] = useState("");
+  console.log("hi");
   return (
     <div className="App">
       <Header />
