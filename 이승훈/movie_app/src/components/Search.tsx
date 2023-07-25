@@ -7,6 +7,7 @@ const Search = () => {
     e.preventDefault();
     const value = e.currentTarget.input.value;
     search(value);
+    console.log("hi");
   };
   return (
     <form onSubmit={handleSubmit}>
