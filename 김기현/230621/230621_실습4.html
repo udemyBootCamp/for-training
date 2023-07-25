@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Images</title>
+    <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        function RandomImage() {
+            const images = [
+                "/Users/gihyunkim/Documents/GitHub/FE_Bootcamp/frontend_bootcamp/230621/asset copy/KakaoTalk_Photo_2023-06-20-16-55-15.jpeg",
+                "/Users/gihyunkim/Documents/GitHub/FE_Bootcamp/frontend_bootcamp/230621/asset copy/KakaoTalk_Photo_2023-06-20-16-55-20.jpeg",
+                "/Users/gihyunkim/Documents/GitHub/FE_Bootcamp/frontend_bootcamp/230621/asset copy/KakaoTalk_Photo_2023-06-20-16-55-25.jpeg",
+            ];
+
+            const [currentImage, setCurrentImage] = React.useState(images[0]);
+
+            const handleClick = () => {
+                const randomIndex = Math.floor(Math.random() * images.length);
+                setCurrentImage(images[randomIndex]);
+            };
+
+            return (
+                <div>
+                    <img src={currentImage} alt="Random Image" onClick={handleClick} />
+                </div>
+                );
+        }
+
+        ReactDOM.render(<RandomImage />, document.getElementById("root"));
+    </script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        class Calculator extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = {input: "",};
+            }
+
+            handleButtonPress = (value) => {
+                this.setState((prevState) => ({input: prevState.input + value,}));
+            };
+
+            handleClear = () => {
+                this.setState({input: "",});
+            };
+
+            handleCalculate = () => {
+            try {
+                    const result = eval(this.state.input);
+                    this.setState({input: result,});
+                } 
+            catch (error) {
+                this.setState({input: "Error",});
+                }
+            };
+
+            render() {
+                return (
+                    <div>
+                    <input type="text" value={this.state.input} readOnly />
+                    <br />
+                    <button onClick={() => this.handleButtonPress("1")}>1</button>
+                    <button onClick={() => this.handleButtonPress("2")}>2</button>
+                    <button onClick={() => this.handleButtonPress("3")}>3</button>
+                    <button onClick={() => this.handleButtonPress("+")}>+</button>
+                    <br />
+                    <button onClick={() => this.handleButtonPress("4")}>4</button>
+                    <button onClick={() => this.handleButtonPress("5")}>5</button>
+                    <button onClick={() => this.handleButtonPress("6")}>6</button>
+                    <button onClick={() => this.handleButtonPress("-")}>-</button>
+                    <br />
+                    <button onClick={() => this.handleButtonPress("7")}>7</button>
+                    <button onClick={() => this.handleButtonPress("8")}>8</button>
+                    <button onClick={() => this.handleButtonPress("9")}>9</button>
+                    <button onClick={() => this.handleButtonPress("*")}>*</button>
+                    <br />
+                    <button onClick={() => this.handleButtonPress("0")}>0</button>
+                    <button onClick={() => this.handleButtonPress(".")}>.</button>
+                    <button onClick={() => this.handleClear()}>C</button>
+                    <button onClick={() => this.handleButtonPress("/")}>/</button>
+                    <br />
+                    <button onClick={() => this.handleCalculate()}>=</button>
+                    </div>
+                );
+            }
+        }
+
+        ReactDOM.render(<Calculator />, document.getElementById("root"));
+    </script>
+</body>
+</html>

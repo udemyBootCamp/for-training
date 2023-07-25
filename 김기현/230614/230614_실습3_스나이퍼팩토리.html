@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>스나이퍼 팩토리 메뉴바</title>
+    <style>
+      .container {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+        grid-gap: 10px;
+        place-items: center;
+        position: fixed;
+        top:0;
+        left: 0;
+        right: 0;
+        padding: 1rem;
+      }
+      .item{
+        font-weight: bold;
+      }
+      img{
+        width: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <img src="./asset/sfac.svg" class="item">
+      <div class="item">스팩소개</div>
+      <div class="item">교육과정</div>
+      <div class="item">공지사항</div>
+      <div class="item">수료생 커뮤니티</div>
+      <div class="item">협력사</div>
+      <div class="item">스팩블로그</div>
+    </div>
+  </body>
+</html>
